@@ -2,7 +2,8 @@ package connection
 
 import (
 	"encoding/binary"
-	"rtmp-new/m/v2/helper"
+
+	"github.com/grnd-alt/rtmpServer/helper"
 )
 
 type BasicHeader struct {

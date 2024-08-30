@@ -2,11 +2,11 @@ package connection
 
 import (
 	"encoding/binary"
-	"rtmp-new/m/v2/helper"
+
+	"github.com/grnd-alt/rtmpServer/helper"
 )
 
 func (c *connection) sendMessage(basic_header BasicHeader, message_header MessageHeader, payload []byte) {
-
 	basic := helper.CreateBasicHeader(basic_header.Fmt, int(basic_header.StreamId))
 	message, _ := helper.CreateMessageHeader(0, payload, message_header.MessageTypeId, message_header.MessageStreamId)
 	c.conn.Write(append(append([]byte{basic}, message...), payload...))

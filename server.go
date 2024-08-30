@@ -1,12 +1,13 @@
-package rtmp
+package rtmpServer
 
 import (
 	"fmt"
 	"log"
 	"net"
 	"os"
-	"rtmp-new/m/v2/rtmp/connection"
 	"sync"
+
+	"github.com/grnd-alt/rtmpServer/connection"
 )
 
 type unreadContent struct {
@@ -47,7 +48,7 @@ func (server RtmpServer) handleTraffic(onFrame connection.OnFrameFunc, onPublish
 		// fmt.Println("reading")
 		conn, err := server.listener.Accept()
 		if err != nil {
-			var Error = log.New(os.Stdout, "\u001b[31mERROR: \u001b[0m", log.LstdFlags|log.Lshortfile)
+			Error := log.New(os.Stdout, "\u001b[31mERROR: \u001b[0m", log.LstdFlags|log.Lshortfile)
 			Error.Println(err)
 		}
 		go connection.HandleConnection(conn, onFrame, onPublish)
